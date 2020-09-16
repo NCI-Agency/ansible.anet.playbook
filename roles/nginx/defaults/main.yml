@@ -1,0 +1,2 @@
+remote_rpm_folder: '{{remote_artifact_folder}}'
+nginx_rpm: nginx-1.18.0-1.el7.ngx.x86_64.rpm

@@ -1,0 +1,11 @@
+- name: Ensure Keycloak installation folder "{{keycloak_installation_folder}}" exists
+  become: yes
+  file:
+    path: '{{keycloak_installation_folder}}'
+    state: directory
+
+- name: Transfer and unpack Keycloak to target machine
+  become: yes
+  unarchive:
+    src: '{{local_artifact_folder}}/keycloak-{{keycloak_version}}.tar.gz'
+    dest: '{{keycloak_installation_folder}}'

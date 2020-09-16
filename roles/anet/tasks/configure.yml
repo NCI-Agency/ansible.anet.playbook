@@ -1,0 +1,8 @@
+- name: 'Configure ANET: generate anet.yml'
+  become: yes
+  template:
+    src: anet.yml.j2
+    dest: '{{anet_installation_folder}}/anet-{{anet_version}}/anet.yml'
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r

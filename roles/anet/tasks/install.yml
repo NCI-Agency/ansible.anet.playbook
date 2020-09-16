@@ -1,0 +1,11 @@
+- name: Ensure ANET installation folder "{{anet_installation_folder}}" exists
+  become: yes
+  file:
+    path: '{{anet_installation_folder}}'
+    state: directory
+
+- name: Transfer and extract ANET on target machine
+  become: yes
+  unarchive:
+    src: '{{local_artifact_folder}}/anet-{{anet_version}}.zip'
+    dest: '{{anet_installation_folder}}'

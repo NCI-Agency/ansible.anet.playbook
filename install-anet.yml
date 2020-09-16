@@ -1,0 +1,69 @@
+- name: ANET Installation
+  hosts:
+    - anet-redhat-test
+
+  vars:
+    local_artifact_folder: '/opt/ansible/anet'
+    remote_artifact_folder: '/opt/ansible/anet'
+
+    # Keycloak
+    keycloak_version: 11.0.2 # AFPL approved version
+
+    # JRE8
+    jre_version: 8u231 # ToDo: Latest JRE
+    source_rpm_folder: '{{local_artifact_folder}}'
+    remote_setup_folder: '{{remote_artifact_folder}}'
+
+    # PostgreSQL
+    postgresql_rpm_version: 12.4-1PGDG
+
+    # ANET
+    anet_version: 2.1.27-385-gff777026e
+
+    dbLoc: 'localhost'
+    ANET_DB_NAME: 'testAnet'
+
+    # ANET anet.yml variables
+
+    ANET_SMTP_SERVER: 'localhost'
+    ANET_SMTP_PORT: '1025'
+    ANET_SMTP_USERNAME: ''
+    ANET_SMTP_PASSWORD: ''
+    ANET_SMTP_SSLTRUST: '{{ANET_SMTP_SERVER}}'
+    ANET_SMTP_STARTTLS: 'true'
+    ANET_SMTP_DISABLE: 'true'
+
+    ANET_DB_DRIVER: 'org.postgresql.Driver'
+    ANET_DB_USERNAME: 'anetTestUser'
+    ANET_DB_PASSWORD: 'Test-P@ssw0rd'
+    ANET_DB_URL: 'jdbc:postgresql://{{dbLoc}}/{{ANET_DB_NAME}}'
+    ANET_DB_DATE_STRING_FORMAT: ''
+    ANET_DB_DATE_CLASS: ''
+
+    ANET_PORT: 8080
+    ANET_ADMIN_PORT: 8181
+
+  tasks:
+    # Install Java Runtime Environment
+    - import_role:
+        name: jre8
+
+    # Install NGINX
+    - import_role:
+        name: nginx
+        tasks_from: install
+
+    # Install Keycloak
+    - import_role:
+        name: keycloak
+        tasks_from: install
+
+    # Install PostgreSQL 12
+    - import_role:
+        name: postgresql
+        tasks_from: install
+
+    # Install ANET
+    - import_role:
+        name: anet
+        tasks_from: configure

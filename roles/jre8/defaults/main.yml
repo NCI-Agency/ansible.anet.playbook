@@ -1,0 +1,8 @@
+---
+# defaults file for jre
+jre_version: 8u241
+source_rpm_folder: /opt/ansible/rpms
+remote_src: false
+remote_setup_folder: /opt/setup
+jre_rpm: jre-{{jre_version}}-linux-x64.rpm
+remote_rpm_folder: '{{remote_setup_folder}}/jre/rpm'
