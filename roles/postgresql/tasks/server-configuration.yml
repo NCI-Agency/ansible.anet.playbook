@@ -1,0 +1,8 @@
+- name: 'Configure PostgreSQL'
+  become: yes
+  template:
+    src: postgresql.conf.j2
+    dest: '{{postgresql_data_folder}}/postgresql.conf'
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r

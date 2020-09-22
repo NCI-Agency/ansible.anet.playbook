@@ -63,6 +63,11 @@
         name: postgresql
         tasks_from: install
 
+    # Configure PostgreSQL 12 server
+    - import_role:
+        name: postgresql
+        tasks_from: server-configuration
+
     # Install ANET
     - import_role:
         name: anet

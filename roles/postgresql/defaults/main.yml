@@ -1,3 +1,4 @@
 remote_rpm_folder: '{{remote_artifact_folder}}'
 postgresql_major_version: 12
 postgresql_rpm_version: 12.4-1PGDG
+postgresql_data_folder: '/var/lib/pgsql/{{postgresql_major_version}}/data'
