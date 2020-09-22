@@ -1,3 +1,4 @@
 remote_rpm_folder: '{{remote_artifact_folder}}'
 postgresql_major_version: 12
 postgresql_rpm_version: 12.4-1PGDG
+postgresql_hba_conf_path: '/var/lib/pgsql/{{postgresql_major_version}}/data/pg_hba.conf'

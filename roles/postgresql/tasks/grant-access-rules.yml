@@ -1,0 +1,62 @@
+# Configure PostgreSQl pg_hba.conf
+
+- name: '"local" is for Unix domain socket connections only'
+  become: yes
+  postgresql_pg_hba:
+    dest: '{{postgresql_hba_conf_path}}'
+    contype: local
+    users: all
+    databases: all
+    method: peer
+    create: true
+
+- name: 'IPv4 local connections to anet DB:'
+  become: yes
+  postgresql_pg_hba:
+    dest: '{{postgresql_hba_conf_path}}'
+    contype: host
+    users: all
+    source: 127.0.0.1/32
+    databases: anet
+    method: md5
+    create: true
+
+- name: 'IPv6 local connections:'
+  become: yes
+  postgresql_pg_hba:
+    dest: '{{postgresql_hba_conf_path}}'
+    contype: host
+    users: all
+    source: ::1/128
+    databases: all
+    method: ident
+    create: true
+
+- name: 'Allow replication connections from localhost, by a user with the replication privilege, local access'
+  become: yes
+  postgresql_pg_hba:
+    dest: '{{postgresql_hba_conf_path}}'
+    contype: local
+    users: all
+    databases: replication
+    method: peer
+
+- name: 'Allow replication connections from localhost, by a user with the replication privilege, host IPv4'
+  become: yes
+  postgresql_pg_hba:
+    dest: '{{postgresql_hba_conf_path}}'
+    contype: host
+    users: all
+    source: 127.0.0.1/32
+    databases: replication
+    method: ident
+
+- name: 'Allow replication connections from localhost, by a user with the replication privilege, host IPv6'
+  become: yes
+  postgresql_pg_hba:
+    dest: '{{postgresql_hba_conf_path}}'
+    contype: host
+    users: all
+    source: ::1/128
+    databases: replication
+    method: ident

@@ -63,6 +63,11 @@
         name: postgresql
         tasks_from: install
 
+    # Configure access rules
+    - import_role:
+        name: postgresql
+        tasks_from: grant-access-rules
+
     # Install ANET
     - import_role:
         name: anet
