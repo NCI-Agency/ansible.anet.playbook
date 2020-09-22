@@ -68,6 +68,16 @@
         name: postgresql
         tasks_from: grant-access-rules
 
+    # Start PostgreSQL 12 server
+    - import_role:
+        name: postgresql
+        tasks_from: start
+
+    # Create ANET-DB
+    - import_role:
+        name: postgresql
+        tasks_from: create-anet-db
+
     # Install ANET
     - import_role:
         name: anet

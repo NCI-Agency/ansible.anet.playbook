@@ -1,0 +1,16 @@
+- import_tasks: install-psycopg2.yml
+
+- name: Create PostgreSQL ANET user
+  become: true
+  become_user: postgres
+  postgresql_user:
+    name: '{{anet_db_user}}'
+    password: '{{anet_db_user_password}}'
+
+- name: Create ANET database
+  become: true
+  become_user: postgres
+  postgresql_db:
+    name: '{{anet_db_name}}'
+    owner: '{{anet_db_user}}'
+    encoding: UTF-8
