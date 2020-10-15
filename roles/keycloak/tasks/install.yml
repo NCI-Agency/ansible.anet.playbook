@@ -9,3 +9,12 @@
   unarchive:
     src: '{{local_artifact_folder}}/keycloak-{{keycloak_version}}.tar.gz'
     dest: '{{keycloak_installation_folder}}'
+
+- name: 'Register Keycloak systemd script'
+  become: yes
+  template:
+    src: anet.service.j2
+    dest: '/usr/lib/systemd/system/anet.service'
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
