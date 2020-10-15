@@ -81,4 +81,9 @@
     # Install ANET
     - import_role:
         name: anet
+        tasks_from: install
+
+    # Configure ANET
+    - import_role:
+        name: anet
         tasks_from: configure
