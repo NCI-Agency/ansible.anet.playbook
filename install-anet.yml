@@ -1,6 +1,6 @@
 - name: ANET Installation
   hosts:
-    - anet-redhat-test
+    - anet-redhat-servers
 
   vars:
     local_artifact_folder: '/opt/ansible/anet'
