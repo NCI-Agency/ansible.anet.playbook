@@ -1,0 +1,9 @@
+# Set PostgreSQL server configuration parameter
+
+- import_tasks: install-psycopg2.yml
+
+- name: 'Bind PostgreSQL to all IP interfaces'
+  postgresql_set:
+    name: listen_addresses
+    value: '*'
+  register: set

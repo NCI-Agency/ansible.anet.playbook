@@ -34,3 +34,16 @@
       - '{{remote_rpm_folder}}/{{postgresql_server_rpm}}'
       - '{{remote_rpm_folder}}/{{postgresql_libs_rpm}}'
     state: present
+  register: install_postgresql
+
+- name: Check if database path exists
+  become: yes
+  stat:
+    path: '/var/lib/pgsql/{{postgresql_major_version}}/data/base'
+  register: stat_database
+
+- name: 'Initialize PostgreSQL {{postgresql_major_version}} database'
+  become: yes
+  command: '/usr/pgsql-{{postgresql_major_version}}/bin/postgresql-{{postgresql_major_version}}-setup initdb'
+  register: postgresql_database_initialized
+  when: stat_database.stat.exists == False

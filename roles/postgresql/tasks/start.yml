@@ -1,0 +1,5 @@
+- name: Start PostgreSQL {{postgresql_major_version}} service
+  become: yes
+  systemd:
+    state: started
+    name: postgresql-{{postgresql_major_version}}.service
