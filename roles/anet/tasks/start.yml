@@ -1,0 +1,5 @@
+- name: Start ANET service
+  become: yes
+  service:
+    name: anet
+    state: started

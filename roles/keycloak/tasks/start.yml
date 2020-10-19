@@ -1,0 +1,5 @@
+- name: Start Keycloak systemd service
+  become: yes
+  service:
+    name: keycloak.service
+    state: started

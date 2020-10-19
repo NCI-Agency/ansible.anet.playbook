@@ -9,6 +9,8 @@
   unarchive:
     src: '{{local_artifact_folder}}/keycloak-{{keycloak_version}}.tar.gz'
     dest: '{{keycloak_installation_folder}}'
+    owner: root
+    group: root
 
 - name: 'Register Keycloak systemd script'
   become: yes
@@ -18,3 +20,19 @@
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
+
+- name: Configure Keycloak (standalone.xml)
+  become: yes
+  copy:
+    src: ../config/standalone.xml
+    dest: '{{keycloak_application_folder}}/standalone/configuration/standalone.xml'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable Keycloak systemd service
+  become: yes
+  service:
+    name: keycloak.service
+    enabled: yes
+    daemon_reload: yes

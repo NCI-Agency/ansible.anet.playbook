@@ -1,3 +1,23 @@
 anet_installation_folder: '/opt/anet'
 anet_version: '2.1.27-385-gff777026e'
+anet_db_host: 'localhost'
+
 postgresql_major_version: 12
+
+ANET_DB_NAME: 'testAnet'
+
+ANET_SMTP_SERVER: 'localhost'
+ANET_SMTP_PORT: '1025'
+ANET_SMTP_USERNAME: ''
+ANET_SMTP_PASSWORD: ''
+ANET_SMTP_SSLTRUST: ''
+ANET_SMTP_STARTTLS: 'true'
+ANET_SMTP_DISABLE: 'true'
+
+ANET_DB_DRIVER: 'org.postgresql.Driver'
+ANET_DB_USERNAME: 'anetTestUser'
+ANET_DB_PASSWORD: 'Test-P@ssw0rd'
+ANET_DB_URL: 'jdbc:postgresql://{{anet_db_host}}/{{ANET_DB_NAME}}'
+
+ANET_DB_DATE_STRING_FORMAT: ''
+ANET_DB_DATE_CLASS: ''

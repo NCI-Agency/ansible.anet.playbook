@@ -1,9 +1,0 @@
-[Unit]
-Description=Keycloak service
-After=network.target
-[Service]
-Type=idle
-Environment=JAVA_HOME=/usr/java/default JBOSS_HOME=/opt/anet/keycloak-{{keycloak_version}} JAVA=/usr/java/default/bin/java JBOSS_LOG_DIR=/opt/anet/logs
-ExecStart=/opt/anet/keycloak-server.sh
-TimeoutStartSec=600
-TimeoutStopSec=600

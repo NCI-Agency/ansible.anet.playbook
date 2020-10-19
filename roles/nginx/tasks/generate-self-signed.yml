@@ -1,0 +1,40 @@
+---
+# --------------------------------------------------------------
+# Generate self-signed certificate
+# --------------------------------------------------------------
+
+- import_tasks: install-pyhton-cryptography.yml
+
+- name: Ensure NGINX certificate path exist
+  become: yes
+  file:
+    path: '{{nginx_path_certificates}}'
+    state: directory
+
+- name: 'Generate OpenSSL private keys for {{ server_hostname }}'
+  become: yes
+  openssl_privatekey:
+    path: '{{ nginx_path_ssl_certificate_key }}'
+    type: 'RSA'
+    size: 4096
+
+- name: Generate an OpenSSL CSR.
+  become: yes
+  openssl_csr:
+    path: '{{ nginx_path_ssl_csr }}'
+    privatekey_path: '{{ nginx_path_ssl_certificate_key }}'
+    common_name: "{{ server_hostname }}"
+    subject_alt_name:
+      - 'IP:{{ ansible_default_ipv4.address }}'
+      - 'DNS:{{ server_hostname }}'
+    subject_alt_name_critical: yes
+    organization_name: NATO
+    organizational_unit_name: ANET
+
+- name: 'Generate a Self Signed OpenSSL certificate for {{ server_hostname }}'
+  become: yes
+  openssl_certificate:
+    path: '{{ nginx_path_ssl_certificate }}'
+    privatekey_path: '{{ nginx_path_ssl_certificate_key }}'
+    csr_path: '{{ nginx_path_ssl_csr }}'
+    provider: selfsigned
