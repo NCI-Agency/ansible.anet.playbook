@@ -1,0 +1,5 @@
+- name: Start NGINX systemd service
+  become: yes
+  service:
+    name: nginx
+    state: started

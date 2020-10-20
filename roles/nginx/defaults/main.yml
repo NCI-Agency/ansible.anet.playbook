@@ -1,2 +1,15 @@
-remote_rpm_folder: '{{remote_artifact_folder}}'
+remote_rpm_folder: '{{ remote_artifact_folder }}'
 nginx_rpm: nginx-1.18.0-1.el7.ngx.x86_64.rpm
+
+nginx_path_certificates: /opt/anet/etc
+
+# Certificate path
+nginx_path_ssl_certificate: '{{ nginx_path_certificates }}/fullchain.pem'
+nginx_path_ssl_certificate_key: '{{ nginx_path_certificates }}/privkey.pem'
+
+server_hostname:  '{{ inventory_hostname }}'
+
+nginx_path_ssl_csr: '{{ nginx_path_certificates }}/{{ inventory_hostname }}.csr'
+
+python_ssl_rpm_version: '0.15.1-1'
+python_ssl_rpm_name: 'pyOpenSSL-{{python_ssl_rpm_version}}.el7.noarch.rpm'

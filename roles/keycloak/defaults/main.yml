@@ -1,2 +1,5 @@
 keycloak_version: 11.0.2
 keycloak_installation_folder: '/opt/anet'
+keycloak_http_port: 9080
+keycloak_https_port: 9443
+keycloak_application_folder: '/opt/anet/keycloak-{{keycloak_version}}'

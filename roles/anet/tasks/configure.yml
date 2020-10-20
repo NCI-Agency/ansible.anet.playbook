@@ -2,6 +2,9 @@
   become: yes
   template:
     src: anet.yml.j2
+# This breaks nested variables: https://github.com/ansible/ansible/issues/72234
+#    variable_start_string: '${'
+#    variable_end_string: '}'
     dest: '{{anet_installation_folder}}/anet-{{anet_version}}/anet.yml'
     owner: root
     group: root

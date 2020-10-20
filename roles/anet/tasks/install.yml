@@ -24,4 +24,4 @@
   service:
     name: anet
     enabled: yes
-    state: started
+    daemon_reload: yes

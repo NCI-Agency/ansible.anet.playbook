@@ -9,3 +9,9 @@
   yum:
     name: '{{remote_artifact_folder}}/{{nginx_rpm}}'
     state: present
+
+- name: Enable NGINX systemd service
+  become: yes
+  service:
+    name: nginx
+    enabled: yes

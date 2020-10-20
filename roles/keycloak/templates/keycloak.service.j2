@@ -1,0 +1,14 @@
+[Unit]
+Description=Keycloak service
+After=network.target
+
+[Service]
+Type=idle
+Environment=JAVA_HOME=/usr/java/default JBOSS_HOME=/opt/anet/keycloak-{{keycloak_version}} JAVA=/usr/java/default/bin/java JBOSS_LOG_DIR=/opt/anet/keycloak-{{keycloak_version}}/logs
+ExecStart=/opt/anet/keycloak-{{keycloak_version}}/bin/standalone.sh -Djboss.http.port={{keycloak_http_port}} -Djboss.https.port={{keycloak_https_port}}
+WorkingDirectory=/opt/anet/keycloak-{{keycloak_version}}
+TimeoutStartSec=600
+TimeoutStopSec=600
+
+[Install]
+WantedBy=multi-user.target
