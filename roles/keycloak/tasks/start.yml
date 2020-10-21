@@ -3,3 +3,14 @@
   service:
     name: keycloak.service
     state: started
+  register: keycloak_started
+
+- name: Wait for Keycloak HTTP port to listen...
+  wait_for:
+    host: localhost
+    port: '{{ keycloak_http_port }}'
+    delay: 10
+    timeout: 30
+    state: started
+    msg: 'KeyCloak HTTP port {{ keycloak_http_port }} is not listening'
+  when: keycloak_started.changed

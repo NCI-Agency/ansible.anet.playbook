@@ -1,0 +1,64 @@
+- set_fact:
+    anet_keycloak_key_server: "{{ lookup('password', '/dev/null length=32 chars=ascii_letters') }}"
+
+- name: 'Keycloak client: ANET confidential client (used by the server-side)'
+  local_action:
+    module: keycloak_client
+    auth_client_id: admin-cli
+    auth_keycloak_url: '{{ keycloak_auth_url }}'
+    auth_realm: master
+    auth_username: '{{ keycloak_user }}'
+    auth_password: '{{ keycloak_password }}'
+    state: present
+    # ANET-Client
+    client_id: ANET-Client
+    implicit_flow_enabled: no
+    standard_flow_enabled: yes
+    protocol: openid-connect
+    public_client: no # Access Type = confidential
+    root_url: http://localhost:8080
+    base_url: /
+    redirect_uris:
+      - http://localhost:8180/*
+      - http://localhost:3000/*
+      - /*
+    admin_url: ''
+    web_origins:
+      - +
+    secret: '{{ anet_keycloak_key_server }}'
+  register: anet_confidential_client_result
+
+- debug:
+    var: anet_confidential_client_result
+    verbosity: 2
+
+- name: 'Keycloak client: ANET public client (used by client-side)'
+  local_action:
+    module: keycloak_client
+    auth_client_id: admin-cli
+    auth_keycloak_url: '{{ keycloak_auth_url }}'
+    auth_realm: master
+    auth_username: '{{ keycloak_user }}'
+    auth_password: '{{ keycloak_password }}'
+    state: present
+    # ANET-Client
+    client_id: ANET-Client-public
+    implicit_flow_enabled: no
+    standard_flow_enabled: yes
+    protocol: openid-connect
+    public_client: yes # Access Type = confidential
+    root_url: http://localhost:8080
+    service_accounts_enabled: yes
+    base_url: /
+    redirect_uris:
+      - http://localhost:8180/*
+      - http://localhost:3000/*
+      - /*
+    admin_url: ''
+    web_origins:
+      - +
+  register: anet_public_client_result
+
+- debug:
+    var: anet_public_client_result
+    verbosity: 2
