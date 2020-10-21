@@ -51,6 +51,11 @@
         name: keycloak
         tasks_from: install
 
+    # Add Keycloak user (required for API configuration)
+    - import_role:
+        name: keycloak
+        tasks_from: add-keycloak-user.yml
+
     # Start Keycloak
     - import_role:
         name: keycloak

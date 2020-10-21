@@ -3,3 +3,5 @@ keycloak_installation_folder: '/opt'
 keycloak_http_port: 9080
 keycloak_https_port: 9443
 keycloak_application_folder: '{{keycloak_installation_folder}}/keycloak-{{keycloak_version}}'
+keycloak_user: 'admin'
+keycloak_password: 'admin'
