@@ -65,8 +65,6 @@
         name: keycloak
         tasks_from: start
 
-    # Add the ANET REALM is missing, should done manually
-
     # Install NGINX
     - import_role:
         name: nginx
@@ -81,6 +79,13 @@
     - import_role:
         name: nginx
         tasks_from: generate-self-signed
+
+    # Add the ANET REALM is missing, should done manually
+
+    # Configure Keycloak clients
+    - import_role:
+        name: keycloak
+        tasks_from: client-config
 
     # NGINX: Start
     - import_role:
