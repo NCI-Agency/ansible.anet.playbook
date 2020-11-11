@@ -1,0 +1,17 @@
+- name: Permit traffic in public zone for NGINX https service
+  become: yes
+  firewalld:
+    zone: public
+    service: https
+    permanent: yes
+    immediate: yes
+    state: enabled
+
+- name: Permit traffic in public zone for NGINX http service
+  become: yes
+  firewalld:
+    zone: public
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled

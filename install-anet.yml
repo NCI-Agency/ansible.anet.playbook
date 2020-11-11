@@ -80,6 +80,11 @@
         name: nginx
         tasks_from: start
 
+    # Open firewall for NGINX HTTP/HTTPS service
+    - import_role:
+        name: nginx
+        tasks_from: firewall-open
+
     # Install PostgreSQL 12
     - import_role:
         name: postgresql
