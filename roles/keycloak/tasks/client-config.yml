@@ -15,8 +15,9 @@
     implicit_flow_enabled: no
     standard_flow_enabled: yes
     protocol: openid-connect
-    public_client: no # Access Type = confidential
+    public_client: no
     root_url: http://localhost:8080
+    service_accounts_enabled: yes
     base_url: /
     redirect_uris:
       - http://localhost:8180/*
@@ -48,7 +49,7 @@
     protocol: openid-connect
     public_client: yes # Access Type = confidential
     root_url: http://localhost:8080
-    service_accounts_enabled: yes
+    service_accounts_enabled: no
     base_url: /
     redirect_uris:
       - http://localhost:8180/*
