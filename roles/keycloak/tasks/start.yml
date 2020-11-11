@@ -12,5 +12,5 @@
     delay: 10
     timeout: 30
     state: started
-    msg: 'KeyCloak HTTP port {{ keycloak_http_port }} is not listening'
+    msg: 'Keycloak HTTP port {{ keycloak_http_port }} is not listening'
   when: keycloak_started.changed

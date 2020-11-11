@@ -6,7 +6,7 @@
     module: keycloak_client
     auth_client_id: admin-cli
     auth_keycloak_url: '{{ keycloak_auth_url }}'
-    auth_realm: master
+    auth_realm: '{{ keycloak_anet_realm }}'
     auth_username: '{{ keycloak_user }}'
     auth_password: '{{ keycloak_password }}'
     state: present
@@ -38,7 +38,7 @@
     module: keycloak_client
     auth_client_id: admin-cli
     auth_keycloak_url: '{{ keycloak_auth_url }}'
-    auth_realm: master
+    auth_realm: '{{ keycloak_anet_realm }}'
     auth_username: '{{ keycloak_user }}'
     auth_password: '{{ keycloak_password }}'
     state: present
