@@ -1,7 +1,7 @@
 # Install PostgreSQL on RedHat 7.x
 
 - set_fact:
-    psycopg2_rpm: 'python-psycopg2-{{psycopg2_version}}.rhel7.1.x86_64.rpm'
+    psycopg2_rpm: 'python-psycopg2-{{psycopg2_version}}.el7.x86_64.rpm'
 
 - name: 'Transfer python-psycopg2-{{psycopg2_version}} RPM to target machine'
   become: yes
