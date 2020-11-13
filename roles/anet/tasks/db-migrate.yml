@@ -1,0 +1,10 @@
+- name: 'Migrate the ANET database'
+  become: yes
+  command:
+    argv:
+      - 'bin/anet'
+      - db
+      - migrate
+      - 'anet.yml'
+  args:
+    chdir: '{{anet_application_folder}}'

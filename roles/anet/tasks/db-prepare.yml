@@ -1,0 +1,11 @@
+- name: 'Prepare ANET database'
+  become: yes
+  command:
+    argv:
+      - 'bin/anet'
+      - dbScript
+      - -S
+      - 'docs/prepare-psql.sql'
+      - anet.yml
+  args:
+    chdir: '{{anet_application_folder}}'

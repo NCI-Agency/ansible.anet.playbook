@@ -1,3 +1,7 @@
+- set_fact:
+    ANET_DB_USERNAME: '{{ anet_db_username }}'
+    ANET_DB_PASSWORD: '{{ anet_db_password }}'
+
 - name: 'Configure ANET: generate anet.yml'
   become: yes
   template:
@@ -5,7 +9,16 @@
 # This breaks nested variables: https://github.com/ansible/ansible/issues/72234
 #    variable_start_string: '${'
 #    variable_end_string: '}'
-    dest: '{{anet_installation_folder}}/anet-{{anet_version}}/anet.yml'
+    dest: '{{anet_application_folder}}/anet.yml'
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: 'Initialize ANET dictionary'
+  become: yes
+  template:
+    src: anet-dictionary.yml.j2
+    dest: '{{anet_application_folder}}/anet-dictionary.yml'
     owner: root
     group: root
     mode: u=rw,g=r,o=r

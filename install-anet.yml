@@ -10,20 +10,19 @@
     keycloak_version: 11.0.2 # AFPL approved version
 
     # JRE8
-    jre_version: 8u231 # ToDo: Latest JRE
     source_rpm_folder: '{{local_artifact_folder}}'
     remote_setup_folder: '{{remote_artifact_folder}}'
 
     # PostgreSQL
     postgresql_major_version: 12
-    postgresql_rpm_version: 12.4-1PGDG
+    postgresql_rpm_version: 12.5-1PGDG
 
     # ANET
-    anet_version: 2.1.33.133.g529c3de10
+    anet_version: 2.1.33~135~gfa4b24306
 
     anet_db_host: 'localhost'
 
-    ANET_DB_NAME: 'testAnet'
+    ANET_DB_NAME: 'anet'
 
     # ANET anet.yml variables
 
@@ -36,8 +35,8 @@
     ANET_SMTP_DISABLE: 'true'
 
     ANET_DB_DRIVER: 'org.postgresql.Driver'
-    ANET_DB_USERNAME: 'anetTestUser'
-    ANET_DB_PASSWORD: 'Test-P@ssw0rd'
+    anet_db_username: 'anet'
+    anet_db_password: 'Test-P@ssw0rd'
     ANET_DB_URL: 'jdbc:postgresql://{{anet_db_host}}/{{ANET_DB_NAME}}'
     ANET_DB_DATE_STRING_FORMAT: ''
     ANET_DB_DATE_CLASS: ''
@@ -97,6 +96,11 @@
         name: postgresql
         tasks_from: start
 
+#    # Clear ANET-DB
+#    - import_role:
+#        name: postgresql
+#        tasks_from: clear-anet-db
+
     # Create ANET-DB
     - import_role:
         name: postgresql
@@ -111,3 +115,19 @@
     - import_role:
         name: anet
         tasks_from: configure
+
+    # Prepare ANET DB
+    - import_role:
+        name: anet
+        tasks_from: db-prepare
+
+    # Check Migrate ANET DB
+    - import_role:
+        name: anet
+        tasks_from: db-migrate
+#
+#    # Check Seed ANET DB
+#    - import_role:
+#        name: anet
+#        tasks_from: db-init
+

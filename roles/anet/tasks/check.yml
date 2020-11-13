@@ -1,0 +1,9 @@
+- name: 'Check ANET configuration'
+  become: yes
+  command:
+    argv:
+      - 'bin/anet'
+      - check
+      - 'anet.yml'
+  args:
+    chdir: '{{anet_application_folder}}'

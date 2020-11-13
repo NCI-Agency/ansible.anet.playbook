@@ -2,7 +2,7 @@
 Description = ANET (Advisor Network) Service
 After = postgresql-{{postgresql_major_version}}.service
 [Service]
-ExecStart = /opt/anet/anet-{{anet_version}}/bin/anet server anet.yml
-WorkingDirectory = /opt/anet/anet-{{anet_version}}
+ExecStart = {{anet_application_folder}}/bin/anet server anet.yml
+WorkingDirectory = {{anet_application_folder}}
 [Install]
 WantedBy = multi-user.target
