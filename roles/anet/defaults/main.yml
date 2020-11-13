@@ -1,6 +1,10 @@
 anet_installation_folder: '/opt/anet'
-anet_version: '2.1.27-385-gff777026e'
+anet_version: '2.1.33.133.g529c3de10'
 anet_db_host: 'localhost'
+anet_rpm: anet-{{anet_version}}-1.x86_64.rpm
+
+source_rpm_folder: '{{local_artifact_folder}}'
+remote_rpm_folder: '{{remote_artifact_folder}}'
 
 postgresql_major_version: 12
 

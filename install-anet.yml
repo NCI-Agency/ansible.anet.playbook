@@ -19,7 +19,7 @@
     postgresql_rpm_version: 12.4-1PGDG
 
     # ANET
-    anet_version: 2.1.27-385-gff777026e
+    anet_version: 2.1.33.133.g529c3de10
 
     anet_db_host: 'localhost'
 
@@ -46,9 +46,6 @@
     ANET_ADMIN_PORT: 8181
 
   tasks:
-    # Install Java Runtime Environment
-    - import_role:
-        name: jre8
 
     # Install Keycloak
     - import_role:
