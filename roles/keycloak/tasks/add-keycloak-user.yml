@@ -1,0 +1,15 @@
+- name: Create Keycloak user
+  become: yes
+  command:
+    argv:
+      - '{{keycloak_application_folder}}/bin/add-user-keycloak.sh'
+      - -u
+      - '{{ keycloak_user }}'
+      - -p
+      - '{{ keycloak_password }}'
+  register: command_result
+  changed_when:
+    - command_result.rc == 0
+  failed_when:
+    - command_result.rc != 0
+    - "' already added to ' not in command_result.stderr"
