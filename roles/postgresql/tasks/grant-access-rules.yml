@@ -17,7 +17,7 @@
     contype: host
     users: all
     source: 127.0.0.1/32
-    databases: anet
+    databases: '{{ANET_DB_NAME}}'
     method: md5
     create: true
 

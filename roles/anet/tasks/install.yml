@@ -1,14 +1,21 @@
-- name: Ensure ANET installation folder "{{anet_installation_folder}}" exists
-  become: yes
-  file:
-    path: '{{anet_installation_folder}}'
-    state: directory
+- set_fact:
+    anet_rpm_dependencies:
+      - '{{ anet_rpm }}'
 
-- name: Transfer and extract ANET on target machine
+- name: Transfer ANET dependencies to target machine
   become: yes
-  unarchive:
-    src: '{{local_artifact_folder}}/anet-{{anet_version}}.zip'
-    dest: '{{anet_installation_folder}}'
+  copy:
+    src: '{{ source_rpm_folder }}/{{ anet_rpm }}'
+    dest: '{{ remote_rpm_folder }}/{{ anet_rpm }}'
+    force: yes
+    remote_src: no
+
+- name: Install ANET
+  become: yes
+  yum:
+    name:
+      - '{{ remote_rpm_folder }}/{{ anet_rpm }}'
+    state: present
 
 - name: 'Register ANET systemd script'
   become: yes
@@ -19,7 +26,7 @@
     group: root
     mode: u=rwx,g=rx,o=rx
 
-- name: Enable & start ANET service
+- name: Enable ANET service
   become: yes
   service:
     name: anet

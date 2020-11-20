@@ -1,6 +1,11 @@
-anet_installation_folder: '/opt/anet'
-anet_version: '2.1.27-385-gff777026e'
-anet_db_host: 'localhost'
+anet_installation_folder: /opt
+anet_application_folder: '{{anet_installation_folder}}/anet'
+anet_version: 2.1.33~135~gfa4b24306
+anet_db_host: localhost
+anet_rpm: 'anet-{{anet_version}}-2.x86_64.rpm'
+
+source_rpm_folder: '{{local_artifact_folder}}'
+remote_rpm_folder: '{{remote_artifact_folder}}'
 
 postgresql_major_version: 12
 
@@ -21,3 +26,6 @@ ANET_DB_URL: 'jdbc:postgresql://{{anet_db_host}}/{{ANET_DB_NAME}}'
 
 ANET_DB_DATE_STRING_FORMAT: ''
 ANET_DB_DATE_CLASS: ''
+
+ANET_PORT: 8080
+ANET_ADMIN_PORT: 8181

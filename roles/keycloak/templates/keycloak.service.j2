@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 Type=idle
-Environment=JAVA_HOME=/usr/java/default JBOSS_HOME=/opt/anet/keycloak-{{keycloak_version}} JAVA=/usr/java/default/bin/java JBOSS_LOG_DIR=/opt/anet/keycloak-{{keycloak_version}}/logs
-ExecStart=/opt/anet/keycloak-{{keycloak_version}}/bin/standalone.sh -Djboss.http.port={{keycloak_http_port}} -Djboss.https.port={{keycloak_https_port}}
-WorkingDirectory=/opt/anet/keycloak-{{keycloak_version}}
+Environment=JAVA_HOME=/usr/java/default JBOSS_HOME={{keycloak_application_folder}} JAVA=/usr/java/default/bin/java JBOSS_LOG_DIR={{keycloak_application_folder}}/logs
+ExecStart={{keycloak_application_folder}}/bin/standalone.sh -Djboss.http.port={{keycloak_http_port}} -Djboss.https.port={{keycloak_https_port}}
+WorkingDirectory={{keycloak_application_folder}}
 TimeoutStartSec=600
 TimeoutStopSec=600
 

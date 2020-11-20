@@ -1,8 +1,8 @@
 remote_rpm_folder: '{{remote_artifact_folder}}'
 postgresql_major_version: 12
-postgresql_rpm_version: 12.4-1PGDG
+postgresql_rpm_version: 12.5-1PGDG
 psycopg2_version: 2.5.1-4
 postgresql_hba_conf_path: '/var/lib/pgsql/{{postgresql_major_version}}/data/pg_hba.conf'
-anet_db_name: devAnet
-anet_db_user: anetDevUser
-anet_db_user_password: anetDevUser
+anet_db_username: anet
+anet_db_password: Test-P@ssw0rd
+ANET_DB_NAME: 'anet'

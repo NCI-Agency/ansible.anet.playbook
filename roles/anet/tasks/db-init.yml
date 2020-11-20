@@ -1,0 +1,9 @@
+- name: 'Seed the ANET database'
+  become: yes
+  command:
+    argv:
+      - 'bin/anet'
+      - init
+      - 'anet.yml'
+  args:
+    chdir: '{{anet_application_folder}}'
