@@ -22,6 +22,8 @@
 
     anet_db_host: 'localhost'
 
+    anet_fqhn: '{{ hostvars.{{ inventory_hostname }}.ansible_ssh_host }}' # ToDo
+
     ANET_DB_NAME: 'anet'
 
     # ANET anet.yml variables
