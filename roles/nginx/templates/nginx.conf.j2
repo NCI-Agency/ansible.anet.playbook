@@ -42,7 +42,7 @@ proxy_busy_buffers_size   256k;
 
   server {
     listen       443 ssl;
-    server_name  tigeranettrainer.com;
+    server_name  {{ ngix_server_name }};
 
     #ssl on;
     ssl_certificate     {{ nginx_path_ssl_certificate }};
@@ -62,7 +62,7 @@ proxy_busy_buffers_size   256k;
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_set_header X-Forwarded-Host $host;
       proxy_set_header X-Forwarded-Port 443;
-      proxy_pass http://127.0.0.1:9080/auth/;
+      proxy_pass http://127.0.0.1:{{ keycloak_http_port }}/auth/;
     }
 
     # Forward to ANET
@@ -74,7 +74,7 @@ proxy_busy_buffers_size   256k;
       proxy_set_header X-Forwarded-Proto $scheme;
       proxy_set_header X-Forwarded-Host $host;
       proxy_set_header X-Forwarded-Port 443;
-      proxy_pass http://127.0.0.1:8080/;
+      proxy_pass http://127.0.0.1:{{ anet_http_port }}/;
     }
   }
 }

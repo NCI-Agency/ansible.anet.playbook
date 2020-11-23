@@ -7,9 +7,12 @@ nginx_path_certificates: /opt/anet/etc
 nginx_path_ssl_certificate: '{{ nginx_path_certificates }}/fullchain.pem'
 nginx_path_ssl_certificate_key: '{{ nginx_path_certificates }}/privkey.pem'
 
+ngix_server_name: '{{ anet_fqhn }}'
+
 server_hostname:  '{{ inventory_hostname }}'
 
 nginx_path_ssl_csr: '{{ nginx_path_certificates }}/{{ inventory_hostname }}.csr'
 
 python_ssl_rpm_version: '0.15.1-1'
 python_ssl_rpm_name: 'pyOpenSSL-{{python_ssl_rpm_version}}.el7.noarch.rpm'
+
