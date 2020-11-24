@@ -80,6 +80,7 @@ server:
       port: {{ANET_PORT}}
       acceptorThreads: 2
       selectorThreads: 4
+      useForwardedHeaders: true # when running behind reverse proxy
   #    - type: https
   #      port: 8443
   #      keyStorePath: example.keystore
