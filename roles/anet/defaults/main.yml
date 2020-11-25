@@ -27,5 +27,4 @@ ANET_DB_URL: 'jdbc:postgresql://{{anet_db_host}}/{{ANET_DB_NAME}}'
 ANET_DB_DATE_STRING_FORMAT: ''
 ANET_DB_DATE_CLASS: ''
 
-ANET_PORT: 8080
 ANET_ADMIN_PORT: 8181
