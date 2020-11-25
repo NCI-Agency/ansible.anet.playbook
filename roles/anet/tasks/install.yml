@@ -1,7 +1,7 @@
 - set_fact:
     anet_rpm_dependencies:
       - '{{ anet_rpm }}'
-    ANET_PORT: : '{{ anet_http_port }}'
+    ANET_PORT: '{{ anet_http_port }}'
 
 - name: Transfer ANET dependencies to target machine
   become: yes

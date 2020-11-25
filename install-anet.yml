@@ -97,6 +97,11 @@
         name: nginx
         tasks_from: firewall-open
 
+    # Configure Keycloak clients
+    - import_role:
+        name: keycloak
+        tasks_from: client-config
+
     # Install PostgreSQL 12
     - import_role:
         name: postgresql
