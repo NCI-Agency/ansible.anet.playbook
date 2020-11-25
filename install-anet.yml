@@ -6,6 +6,9 @@
     local_artifact_folder: '/opt/ansible/anet'
     remote_artifact_folder: '/opt/ansible/anet'
 
+    # JRE8
+    jre_version: 8u231 # ToDo: Latest JRE
+
     # Keycloak
     keycloak_version: 11.0.2 # AFPL approved version
 
@@ -49,6 +52,10 @@
     keycloak_http_port: 9080
 
   tasks:
+
+    # Install Java Runtime Environment
+    - import_role:
+        name: jre8
 
     # Install Keycloak
     - import_role:
