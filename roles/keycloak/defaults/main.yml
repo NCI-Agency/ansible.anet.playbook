@@ -5,3 +5,6 @@ keycloak_https_port: 9443
 keycloak_application_folder: '{{keycloak_installation_folder}}/keycloak-{{keycloak_version}}'
 keycloak_user: 'admin'
 keycloak_password: 'admin'
+keycloak_auth_url: 'http://localhost:{{ keycloak_http_port }}/auth'
+keycloak_api_realm: 'master'
+keycloak_anet_realm: 'ANET-Realm'
