@@ -25,8 +25,6 @@
 
     anet_db_host: 'localhost'
 
-    anet_fqhn: '{{ hostvars.{{ inventory_hostname }}.ansible_ssh_host }}' # ToDo
-
     ANET_DB_NAME: 'anet'
 
     # ANET anet.yml variables
@@ -87,13 +85,6 @@
         name: nginx
         tasks_from: generate-self-signed
 
-    # Add the ANET REALM is missing, should done manually
-
-    # Configure Keycloak clients
-    - import_role:
-        name: keycloak
-        tasks_from: client-config
-
     # NGINX: Start
     - import_role:
         name: nginx
@@ -103,6 +94,14 @@
     - import_role:
         name: nginx
         tasks_from: firewall-open
+
+    - name: 'Please add the "ANET-Realm" to Keycloak in https://{{anet_fqhn}}/auth'
+      pause:
+
+    # Configure Keycloak clients
+    - import_role:
+        name: keycloak
+        tasks_from: client-config
 
     # Configure Keycloak clients
     - import_role:
@@ -153,9 +152,7 @@
     - import_role:
         name: anet
         tasks_from: db-migrate
-#
-#    # Check Seed ANET DB
-#    - import_role:
-#        name: anet
-#        tasks_from: db-init
+
+    - name: Please run `cd /opt/anet; bin/anet init anet.ylm`, and follow the instructions.
+      pause:
 
