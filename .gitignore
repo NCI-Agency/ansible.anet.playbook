@@ -1,3 +1,5 @@
 # IntelliJ IDEA project files
 *.iml
 .idea
+hosts.yml
+hosts.yml
