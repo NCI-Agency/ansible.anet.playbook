@@ -43,14 +43,14 @@ emailFromAddr: "Anet Testing <hunter+anet@dds.mil>"
 serverUrl: "http://localhost:3000"
 
 keycloakConfiguration:
-  realm: ANET-Realm
+  realm:  {{ keycloak_anet_realm }}
   auth-server-url: 'https://{{ anet_fqhn }}/auth'
   ssl-required: none
   register-node-at-startup: true
   register-node-period: 600
   resource: ANET-Client
   show-logout-link: true
-  enable-basic-auth: true
+  enable-basic-auth: false
   disable-trust-manager: true # Used to access KeyCloak within localhost
   credentials:
     secret: {{ anet_keycloak_key_server }}

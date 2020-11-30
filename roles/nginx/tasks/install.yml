@@ -15,3 +15,13 @@
   service:
     name: nginx
     enabled: yes
+
+- name: Set SE-Linux policy to allow NGINX can connect via HTTP to ANET
+  become: yes
+  command:
+    argv:
+      - setsebool
+      - -P
+      - httpd_can_network_connect
+      - on
+

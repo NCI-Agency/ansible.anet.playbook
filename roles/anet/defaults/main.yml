@@ -9,15 +9,17 @@ remote_rpm_folder: '{{remote_artifact_folder}}'
 
 postgresql_major_version: 12
 
+ANET_PORT: '{{anet_http_port}}'
+
 ANET_DB_NAME: 'testAnet'
 
-ANET_SMTP_SERVER: 'localhost'
-ANET_SMTP_PORT: '1025'
+ANET_SMTP_SERVER: localhost
+ANET_SMTP_PORT: 587
 ANET_SMTP_USERNAME: ''
 ANET_SMTP_PASSWORD: ''
 ANET_SMTP_SSLTRUST: ''
-ANET_SMTP_STARTTLS: 'true'
-ANET_SMTP_DISABLE: 'true'
+ANET_SMTP_STARTTLS: true
+ANET_SMTP_DISABLE: true
 
 ANET_DB_DRIVER: 'org.postgresql.Driver'
 ANET_DB_USERNAME: 'anetTestUser'
