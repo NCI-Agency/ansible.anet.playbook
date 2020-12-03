@@ -23,6 +23,10 @@ ansible-galaxy collection install community.general
 
 For example:
 ```yml
+vars:
+  keycloak_anet_realm: ANET-Realm
+  anet_db_password: 'Test-P@ssw0rd'
+
 anet-redhat-servers:
   hosts:
     anet.example.nato.int:
