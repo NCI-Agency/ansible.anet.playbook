@@ -1,4 +1,6 @@
 # IntelliJ IDEA project files
 *.iml
 .idea
+# Ignore ANET inventory
+hosts.yml
 hosts.yml
