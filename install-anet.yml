@@ -90,6 +90,11 @@
         name: apache
         tasks_from: configure
 
+    # Install pgAdmin
+    - import_role:
+        name: pgadmin
+        tasks_from: install
+
     # Start Apache
     - import_role:
         name: apache

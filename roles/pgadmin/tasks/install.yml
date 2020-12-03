@@ -1,0 +1,15 @@
+# Install pgAdmin on RedHat / CentOS 7.x
+
+- name: Install pgAdmin
+  become: yes
+  yum:
+    name:
+      - pgadmin4-web
+      - httpd-tools
+      - policycoreutils-python
+
+    state: latest
+  register: install_pgadmin
+
+- name: Please run `/usr/pgadmin4/bin/setup-web.sh`, and follow the instructions.
+  pause:

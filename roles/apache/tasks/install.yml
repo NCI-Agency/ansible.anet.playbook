@@ -7,7 +7,7 @@
       - mod_ssl
       - mod_wsgi # Required for pgAdmin
     state: latest
-  register: install_postgresql
+  register: install_httpd
 
 - name: Retrieve service information
   service_facts:
