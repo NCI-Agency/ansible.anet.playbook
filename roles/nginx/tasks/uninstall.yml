@@ -1,0 +1,11 @@
+- name: Disable NGINX systemd service
+  become: yes
+  service:
+    name: nginx
+    enabled: no
+
+- name: Remove NGINX
+  become: yes
+  yum:
+    name: nginx
+    state: removed

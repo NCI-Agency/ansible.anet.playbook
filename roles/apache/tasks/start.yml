@@ -1,0 +1,15 @@
+- name: Retrieve service information
+  service_facts:
+
+- name: Stop NGINX systemd service
+  become: yes
+  service:
+    name: nginx
+    state: stopped
+  when: ansible_facts.services['nginx.service'] is defined
+
+- name: Start Apache (httpd) systemd service
+  become: yes
+  service:
+    name: httpd
+    state: started

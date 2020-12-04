@@ -1,0 +1,23 @@
+- name: Check if firewall is active
+  service_facts:
+  register: firewalld
+
+- name: Permit traffic in public zone for Apache https service
+  become: yes
+  firewalld:
+    zone: public
+    service: https
+    permanent: yes
+    immediate: yes
+    state: enabled
+  when: ansible_facts.services['firewalld.service'].status == 'enabled'
+
+- name: Permit traffic in public zone for Apache http service
+  become: yes
+  firewalld:
+    zone: public
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled
+  when: ansible_facts.services['firewalld.service'].status == 'enabled'

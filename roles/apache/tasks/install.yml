@@ -1,0 +1,36 @@
+- name: 'Install Apache httpd & modules'
+  become: yes
+  yum:
+    name:
+      - httpd
+      - httpd-tools
+      - mod_ssl
+      - mod_wsgi # Required for pgAdmin
+    state: latest
+  register: install_postgresql
+
+- name: Retrieve service information
+  service_facts:
+
+- name: Disable NGINX service
+  become: yes
+  service:
+    name: nginx
+    enabled: no
+  when: ansible_facts.services['nginx.service'] is defined
+
+- name: Enable Apache systemd service
+  become: yes
+  service:
+    name: httpd
+    enabled: yes
+
+- name: Set SE-Linux policy to allow NGINX can connect via HTTP to ANET
+  become: yes
+  command:
+    argv:
+      - setsebool
+      - -P
+      - httpd_can_network_connect
+      - on
+

@@ -1,0 +1,24 @@
+- name: 'Remove Apache httpd default welcome page'
+  become: yes
+  file:
+    state: absent
+    path: /etc/httpd/conf.d/welcome.conf
+
+- name: 'Add ssl.conf configuration to Apache'
+  become: yes
+  template:
+    src: ssl.conf
+    dest: /etc/httpd/conf.d/ssl.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+
+- name: Retrieve service information
+  service_facts:
+
+- name: Reload Apache httpd
+  become: yes
+  service:
+    name: 'httpd.service'
+    state: restarted
+  when: ansible_facts.services['httpd.service'].state == 'running'

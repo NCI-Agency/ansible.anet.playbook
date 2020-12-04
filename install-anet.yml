@@ -75,29 +75,29 @@
         name: keycloak
         tasks_from: start
 
-    # Install NGINX
+    # Install Apache as reverse proxy
     - import_role:
-        name: nginx
+        name: apache
         tasks_from: install
 
-    # Configure NGINX
+    # Generate self-signed certificate for Apache
     - import_role:
-        name: nginx
-        tasks_from: configure
-
-    # Generate self signed certificates
-    - import_role:
-        name: nginx
+        name: apache
         tasks_from: generate-self-signed
 
-    # NGINX: Start
+    # Configure Apache
     - import_role:
-        name: nginx
+        name: apache
+        tasks_from: configure
+
+    # Start Apache
+    - import_role:
+        name: apache
         tasks_from: start
 
-    # NGINX: Open firewall for NGINX HTTP/HTTPS service
+    # Open firewall for Apache HTTP/HTTPS service
     - import_role:
-        name: nginx
+        name: apache
         tasks_from: firewall-open
 
     # Configure Keycloak clients
