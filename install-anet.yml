@@ -39,7 +39,7 @@
 
     ANET_DB_DRIVER: 'org.postgresql.Driver'
     anet_db_username: 'anet'
-    anet_db_password: 'Test-P@ssw0rd'
+
     ANET_DB_URL: 'jdbc:postgresql://{{anet_db_host}}/{{ANET_DB_NAME}}'
     ANET_DB_DATE_STRING_FORMAT: ''
     ANET_DB_DATE_CLASS: ''
