@@ -51,6 +51,11 @@
 
   tasks:
 
+    # Install local repository
+    - import_role:
+        name: local-repo
+        tasks_from: install
+
     # Install Java Runtime Environment
     - import_role:
         name: jre8

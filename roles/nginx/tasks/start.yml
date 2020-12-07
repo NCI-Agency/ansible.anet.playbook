@@ -1,3 +1,9 @@
+- name: Ensure Apache (httpd) is not running
+  become: yes
+  service:
+    name: httpd
+    state: stopped
+
 - name: Start NGINX systemd service
   become: yes
   service:

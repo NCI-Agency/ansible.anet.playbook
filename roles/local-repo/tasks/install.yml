@@ -1,0 +1,32 @@
+# Install createrepo on CentOS / RedHat 7.x
+
+- set_fact:
+    createrepo_rpms:
+      - 'createrepo-0.9.9-28.el7.noarch.rpm'
+      - 'python-deltarpm-3.6-3.el7.x86_64.rpm'
+      - 'deltarpm-3.6-3.el7.x86_64.rpm'
+
+- name: Check if createrepo is installed
+  yum:
+    list: createrepo
+  register: is_createrepo_installed
+
+- include_tasks: transfer-repo.yml
+
+- name: Install createrepo
+  become: yes
+  yum:
+    name: "{{ [remote_rpm_repo_folder + '/'] | product(createrepo_rpms) | map('join') | list }}"
+    state: present
+  register: install_createrepo
+  when: is_createrepo_installed.results | selectattr("yumstate", "match", "installed") | list | length == 0
+
+- include_tasks: update.yml
+
+- name: Register local Ansible repository
+  become: yes
+  yum_repository:
+    name: ansible
+    description: ANET local Ansible repository
+    baseurl: 'file://{{ remote_rpm_repo_folder }}'
+    gpgcheck: no

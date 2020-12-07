@@ -1,21 +1,11 @@
 - set_fact:
-    anet_rpm_dependencies:
-      - '{{ anet_rpm }}'
     ANET_PORT: '{{ anet_http_port }}'
-
-- name: Transfer ANET dependencies to target machine
-  become: yes
-  copy:
-    src: '{{ source_rpm_folder }}/{{ anet_rpm }}'
-    dest: '{{ remote_rpm_folder }}/{{ anet_rpm }}'
-    force: yes
-    remote_src: no
 
 - name: Install ANET
   become: yes
   yum:
     name:
-      - '{{ remote_rpm_folder }}/{{ anet_rpm }}'
+      - '{{ anet_rpm }}'
     state: present
 
 - name: 'Register ANET systemd script'

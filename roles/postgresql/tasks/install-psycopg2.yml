@@ -1,18 +1,5 @@
-# Install PostgreSQL on RedHat 7.x
-
-- set_fact:
-    psycopg2_rpm: 'python-psycopg2-{{psycopg2_version}}.el7.x86_64.rpm'
-
-- name: 'Transfer python-psycopg2-{{psycopg2_version}} RPM to target machine'
-  become: yes
-  copy:
-    src: '{{local_artifact_folder}}/{{psycopg2_rpm}}'
-    mode: 0644
-    dest: '{{remote_rpm_folder}}/'
-
 - name: 'Install python-psycopg2-{{psycopg2_version}} RPM'
   become: yes
   yum:
-    name:
-      - '{{remote_rpm_folder}}/{{psycopg2_rpm}}'
+    name: python-psycopg2
     state: present

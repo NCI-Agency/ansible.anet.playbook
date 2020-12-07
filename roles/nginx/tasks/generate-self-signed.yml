@@ -3,7 +3,11 @@
 # Generate self-signed certificate
 # --------------------------------------------------------------
 
-- import_tasks: install-pyhton-cryptography.yml
+- name: Install PyOpenSSL RPM version {{python_ssl_rpm_version}}
+  become: yes
+  yum:
+    name: '{{python_ssl_rpm_name}}'
+    state: present
 
 - name: Ensure NGINX certificate path exist
   become: yes

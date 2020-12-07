@@ -1,0 +1,6 @@
+- name: Update repository
+  become: yes
+  command:
+    argv:
+      - createrepo
+      - '{{ remote_rpm_repo_folder }}'

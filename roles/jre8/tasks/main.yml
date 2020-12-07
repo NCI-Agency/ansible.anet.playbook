@@ -3,27 +3,8 @@
 # Install Java JRE
 # --------------------------------------------------------------
 
-- name: Ensure RPM folder in setup directory exists, if not it will be created.
-  become: yes
-  file:
-    path: '{{remote_rpm_folder}}'
-    state: directory
-
-# Give clear feedback to the user if the required RPM is present in RPM folder
-- name: Ensure JRE RPM exists in the local rpms folder
-  become: no
-  local_action: stat path='{{source_rpm_folder}}/{{jre_rpm}}'
-  when: not remote_src
-
-- name: Transfer Java JRE to target machine
-  become: yes
-  copy:
-    src: '{{source_rpm_folder}}/{{jre_rpm}}'
-    dest: '{{remote_rpm_folder}}/{{jre_rpm}}'
-    remote_src: '{{remote_src}}'
-
 - name: Install Java JRE
   become: yes
   yum:
-    name: '{{remote_rpm_folder}}/{{jre_rpm}}'
+    name: 'jre1.8.x86_64'
     state: present
