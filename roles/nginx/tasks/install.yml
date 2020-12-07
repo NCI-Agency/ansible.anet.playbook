@@ -2,8 +2,8 @@
 
   become: yes
   yum:
-    name: 'nginx'
-    state: present
+    name: nginx
+    state: latest
 
 - name: Disable Apache (httpd) systemd service
   become: yes

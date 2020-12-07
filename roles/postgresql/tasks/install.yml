@@ -1,6 +1,6 @@
 # Install PostgreSQL on RedHat 7.x
 
-- name: 'Install PostgreSQL {{postgresql_major_version}}'
+- name: 'Install latest PostgreSQL {{postgresql_major_version}}'
   become: yes
   yum:
     name:
@@ -8,7 +8,7 @@
       - 'postgresql{{postgresql_major_version}}'
       - 'postgresql{{postgresql_major_version}}'
       - 'postgresql{{postgresql_major_version}}-contrib'
-    state: present
+    state: latest
   register: install_postgresql
 
 - name: Enable PostgreSQL {{postgresql_major_version}} systemd service

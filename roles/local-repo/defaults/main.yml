@@ -2,7 +2,7 @@
 local_rpm_repo_folder: '{{ local_artifact_folder }}/repo'
 
 # Target repository folder
-remote_rpm_repo_folder: '{{ remote_artifact_folder }}/repo'
+remote_rpm_repo_folder: '{{ remote_artifact_folder }}'
 
 createrepo_version: 0.9.9-28.el7
 python_deltarpm_version:  3.6-3.el7

@@ -3,8 +3,8 @@
 # Install Java JRE
 # --------------------------------------------------------------
 
-- name: Install Java JRE
+- name: Install latest Java 8 JRE
   become: yes
   yum:
     name: 'jre1.8'
-    state: present
+    state: latest
