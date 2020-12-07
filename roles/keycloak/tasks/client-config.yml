@@ -1,6 +1,38 @@
 - set_fact:
     anet_keycloak_key_server: "{{ lookup('password', '/dev/null length=32 chars=ascii_letters') }}"
 
+- name: 'Configure Keycloak API access'
+  command:
+    argv:
+      - '{{ keycloak_application_folder }}/bin/kcadm.sh'
+      - config
+      - credentials
+      - --server
+      - 'http://localhost:{{ keycloak_http_port }}/auth'
+      - --realm
+      - '{{ keycloak_api_realm }}'
+      - --user
+      - '{{keycloak_user}}'
+      - --password
+      - '{{keycloak_password}}'
+
+- name: 'Create ANET realm: {{ keycloak_anet_realm }}'
+  command:
+    argv:
+      - '{{ keycloak_application_folder }}/bin/kcadm.sh'
+      - create
+      - realms
+      - -s
+      - 'realm={{ keycloak_anet_realm }}'
+      - -s
+      - enabled=true
+  register: create_realm
+  failed_when:
+    - create_realm.rc == 1
+    - create_realm.stderr != 'Conflict detected. See logs for details'
+  changed_when:
+    - create_realm.rc == 0
+
 - name: 'Keycloak client: ANET confidential client (used by the server-side)'
   keycloak_client:
     realm: '{{ keycloak_anet_realm }}'
