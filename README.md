@@ -23,7 +23,7 @@ ansible-galaxy collection install community.general
 
 ## Artifacts (dependencies)
 Artifacts should be installed on the Ansible controller in:
-- `{{ local_rpm_repo_folder }}` All none RPM artifacts (currently only keycloak distribution)
+- `{{ local_rpm_repo_folder }}` All non-RPM artifacts (currently only keycloak distribution)
 - `{{ local_rpm_repo_folder }}/repo` All required RPMs
 
 Default value for `local_rpm_repo_folder` = `/opt/ansible/anet`
