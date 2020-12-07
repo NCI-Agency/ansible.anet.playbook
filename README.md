@@ -17,9 +17,16 @@ Which can be installed using:
 ansible-galaxy collection install community.general
 ```
 
-# Inventory
+## Inventory
 
 `anet_fqhn` should bet set to ANET's [fully qualified hostname](https://de.wikipedia.org/wiki/Fully-Qualified_Host_Name) corresponding with the way user shall access anet via their web browser.
+
+## Artifacts (dependencies)
+Artifacts should be installed on the Ansible controller in:
+- `{{ local_rpm_repo_folder }}` All non-RPM artifacts (currently only Keycloak distribution)
+- `{{ local_rpm_repo_folder }}/repo` All required RPMs
+
+Default value for `local_rpm_repo_folder` = `/opt/ansible/anet`
 
 For example:
 ```yml

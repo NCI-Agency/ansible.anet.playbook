@@ -1,14 +1,15 @@
-- name: Transfer NGINX RPM to target machine
-  become: yes
-  copy:
-    src: '{{local_artifact_folder}}/{{nginx_rpm}}'
-    dest: '{{remote_rpm_folder}}/'
+- name: Install NGINX reverse proxy
 
-- name: Install NGINX {{nginx_rpm}}
   become: yes
   yum:
-    name: '{{remote_artifact_folder}}/{{nginx_rpm}}'
-    state: present
+    name: nginx
+    state: latest
+
+- name: Disable Apache (httpd) systemd service
+  become: yes
+  service:
+    name: httpd
+    enabled: no
 
 - name: Enable NGINX systemd service
   become: yes
