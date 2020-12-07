@@ -2,9 +2,9 @@
 
 - set_fact:
     createrepo_rpms:
-      - 'createrepo-0.9.9-28.el7.noarch.rpm'
-      - 'python-deltarpm-3.6-3.el7.x86_64.rpm'
-      - 'deltarpm-3.6-3.el7.x86_64.rpm'
+      - 'createrepo-{{ createrepo_version }}.noarch.rpm'
+      - 'python-deltarpm-{{ python_deltarpm_version }}}.x86_64.rpm'
+      - 'deltarpm-{{ deltarpm_version }}}.x86_64.rpm'
 
 - name: Check if createrepo is installed
   yum:
