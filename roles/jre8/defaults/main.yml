@@ -1,3 +1,0 @@
-# defaults file for jre
-jre_version: 8u241
-jre_rpm: jre-{{jre_version}}-linux-x64.rpm
