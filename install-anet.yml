@@ -100,9 +100,6 @@
         name: nginx
         tasks_from: firewall-open
 
-    - name: 'Please add the "ANET-Realm" to Keycloak in https://{{anet_fqhn}}/auth'
-      pause:
-
     # Configure Keycloak clients
     - import_role:
         name: keycloak
