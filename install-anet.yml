@@ -49,12 +49,16 @@
 
     keycloak_http_port: 9080
 
+    offline_rpm_repo: no
+    jre_rpm_name: java-1.8.0-openjdk
+
   tasks:
 
     # Install local repository
     - import_role:
         name: local-repo
         tasks_from: install
+      when: offline_rpm_repo
 
     # Install Java Runtime Environment
     - import_role:
