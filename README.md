@@ -30,9 +30,10 @@ Default value for `local_rpm_repo_folder` = `/opt/ansible/anet`
 
 For example:
 ```yml
-vars:
-  keycloak_anet_realm: ANET-Realm
-  anet_db_password: 'Test-P@ssw0rd'
+all:
+  vars:
+    keycloak_anet_realm: ANET-Realm
+    anet_db_password: 'Test-P@ssw0rd'
 
 anet-redhat-servers:
   hosts:
