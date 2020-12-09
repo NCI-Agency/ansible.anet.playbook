@@ -6,5 +6,5 @@
 - name: Install latest Java 8 JRE
   become: yes
   yum:
-    name: 'jre1.8'
+    name: '{{ jre_rpm_name }}'
     state: latest
