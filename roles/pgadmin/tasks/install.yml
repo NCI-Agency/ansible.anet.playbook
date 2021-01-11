@@ -3,10 +3,7 @@
 - name: Install pgAdmin
   become: yes
   yum:
-    name:
-      - pgadmin4-web
-      - httpd-tools
-      - policycoreutils-python
+    name: pgadmin4-web
 
     state: latest
   register: install_pgadmin
