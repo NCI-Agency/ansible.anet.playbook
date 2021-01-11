@@ -1,0 +1,17 @@
+- name: Ensure RPM folder in setup directory exists
+  become: yes
+  file:
+    path: '{{remote_artifact_folder}}'
+    state: directory
+
+- name: Transfer PyOpenSSL RPM version {{python_ssl_rpm_version}}
+  become: yes
+  copy:
+    src: '{{local_artifact_folder}}/{{python_ssl_rpm_name}}'
+    dest: '{{remote_rpm_folder}}/'
+
+- name: Install PyOpenSSL RPM version {{python_ssl_rpm_version}}
+  become: yes
+  yum:
+    name: '{{remote_rpm_folder}}/{{python_ssl_rpm_name}}'
+    state: present

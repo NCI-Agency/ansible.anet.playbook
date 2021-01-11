@@ -1,0 +1,15 @@
+mod_wsgi_rpm: mod_wsgi-3.4-18.el7.x86_64.rpm
+
+httpd_server_name: '{{ anet_fqhn }}'
+
+httpd_path_certificates: /etc/pki/tls/certs
+
+python_ssl_rpm_version: '0.15.1-1.el7'
+
+# Certificate path
+httpd_path_ssl_certificate: /etc/pki/tls/certs/localhost.crt
+httpd_path_ssl_certificate_key: /etc/pki/tls/private/localhost.key
+
+httpd_path_ssl_csr: '{{ httpd_path_certificates }}/{{ inventory_hostname }}.csr'
+
+remote_rpm_folder: '{{ remote_artifact_folder }}'

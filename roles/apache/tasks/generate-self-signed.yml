@@ -1,0 +1,44 @@
+---
+# --------------------------------------------------------------
+# Generate self-signed certificate
+# --------------------------------------------------------------
+
+- name: Install PyOpenSSL RPM version {{python_ssl_rpm_version}}
+  become: yes
+  yum:
+    name: 'pyOpenSSL-{{python_ssl_rpm_version}}'
+    state: present
+
+- name: Ensure Apache httpd certificate path exist
+  become: yes
+  file:
+    path: '{{ httpd_path_certificates }}'
+    state: directory
+
+- name: 'Generate OpenSSL private keys for {{ httpd_server_name }}'
+  become: yes
+  openssl_privatekey:
+    path: '{{ httpd_path_ssl_certificate_key }}'
+    type: 'RSA'
+    size: 4096
+
+- name: Generate an OpenSSL CSR.
+  become: yes
+  openssl_csr:
+    path: '{{ httpd_path_ssl_csr }}'
+    privatekey_path: '{{ httpd_path_ssl_certificate_key }}'
+    common_name: "{{ httpd_server_name }}"
+    subject_alt_name:
+      - 'IP:{{ ansible_default_ipv4.address }}'
+      - 'DNS:{{ httpd_server_name }}'
+    subject_alt_name_critical: yes
+    organization_name: NATO
+    organizational_unit_name: ANET
+
+- name: 'Generate a Self Signed OpenSSL certificate for {{ httpd_server_name }}'
+  become: yes
+  openssl_certificate:
+    path: '{{ httpd_path_ssl_certificate }}'
+    privatekey_path: '{{ httpd_path_ssl_certificate_key }}'
+    csr_path: '{{ httpd_path_ssl_csr }}'
+    provider: selfsigned
