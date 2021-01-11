@@ -4,3 +4,5 @@
     argv:
       - createrepo
       - '{{ remote_rpm_repo_folder }}'
+
+- include_tasks: clear-cache.yml

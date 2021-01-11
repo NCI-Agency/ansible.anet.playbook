@@ -7,6 +7,6 @@
 - name: Update local Ansible repository
   become: yes
   copy:
-    src: '{{ local_rpm_repo_folder }}'
+    src: '{{ local_rpm_repo_folder }}/'
     mode: 0644
-    dest: '{{ remote_rpm_repo_folder }}'
+    dest: '{{ remote_rpm_repo_folder }}/'
