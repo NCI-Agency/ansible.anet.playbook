@@ -1,6 +1,3 @@
-- set_fact:
-    anet_keycloak_key_server: "{{ lookup('password', '/dev/null length=32 chars=ascii_letters') }}"
-
 - name: 'Configure Keycloak API access'
   command:
     argv:
