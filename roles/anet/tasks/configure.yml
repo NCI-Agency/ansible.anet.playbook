@@ -22,3 +22,5 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
+
+- import_tasks: check.yml
