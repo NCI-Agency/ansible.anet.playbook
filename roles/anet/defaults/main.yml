@@ -29,3 +29,5 @@ ANET_DB_DATE_STRING_FORMAT: ''
 ANET_DB_DATE_CLASS: ''
 
 ANET_ADMIN_PORT: 8181
+
+anet_keycloak_key_server: "{{ lookup('password', '/dev/null length=32 chars=ascii_letters') }}"

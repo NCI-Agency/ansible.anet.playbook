@@ -34,6 +34,7 @@ all:
   vars:
     keycloak_anet_realm: ANET-Realm
     anet_db_password: 'Test-P@ssw0rd'
+    anet_keycloak_key_server: NvHfQdPMRgJbUMYFiSmeYbRwlIFigEcV
 
 anet-redhat-servers:
   hosts:
