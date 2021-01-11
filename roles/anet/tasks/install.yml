@@ -5,7 +5,7 @@
   become: yes
   yum:
     name: anet
-    state: present
+    state: latest
 
 - name: 'Register ANET systemd script'
   become: yes
