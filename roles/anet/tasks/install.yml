@@ -4,8 +4,7 @@
 - name: Install ANET
   become: yes
   yum:
-    name:
-      - '{{ anet_rpm }}'
+    name: anet
     state: present
 
 - name: 'Register ANET systemd script'
