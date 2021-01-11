@@ -2,7 +2,6 @@ anet_installation_folder: /opt
 anet_application_folder: '{{anet_installation_folder}}/anet'
 anet_version: 2.1.33~135~gfa4b24306
 anet_db_host: localhost
-anet_rpm: 'anet-{{anet_version}}-2'
 
 source_rpm_folder: '{{local_artifact_folder}}'
 remote_rpm_folder: '{{remote_artifact_folder}}'
