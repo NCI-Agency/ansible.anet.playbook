@@ -1,0 +1,9 @@
+- name: Clear yum cache
+  become: yes
+  command:
+    argv:
+      - yum
+      - clean
+      - all
+  args:
+    warn: false
