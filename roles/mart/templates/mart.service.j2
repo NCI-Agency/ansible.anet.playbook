@@ -1,0 +1,10 @@
+[Unit]
+Description = MART (Mobile Advisor Reporting Tool) Service
+After = httpd.service
+[Service]
+ExecStart = {{mart_application_folder}}/bin/mart.sh start
+ExecStop = {{mart_application_folder}}/bin/mart.sh stop
+ExecRestart = {{mart_application_folder}}/bin/mart.sh restart
+WorkingDirectory = {{mart_application_folder}}
+[Install]
+WantedBy = multi-user.target

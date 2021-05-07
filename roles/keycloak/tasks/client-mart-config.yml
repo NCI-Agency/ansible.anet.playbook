@@ -1,0 +1,52 @@
+- include_tasks: config-api-access.yml
+
+- name: 'Create MART realm: {{ keycloak_mart_realm }}'
+  command:
+    argv:
+      - '{{ keycloak_application_folder }}/bin/kcadm.sh'
+      - create
+      - realms
+      - -s
+      - 'realm={{ keycloak_mart_realm }}'
+      - -s
+      - enabled=true
+  register: create_realm
+  failed_when:
+    - create_realm.rc == 1
+    - create_realm.stderr != 'Conflict detected. See logs for details'
+  changed_when:
+    - create_realm.rc == 0
+
+- debug:
+    var: anet_confidential_client_result
+    verbosity: 2
+
+- name: 'Keycloak client: MART public client'
+  keycloak_client:
+    realm: '{{ keycloak_mart_realm }}'
+    auth_client_id: admin-cli
+    auth_keycloak_url: '{{ keycloak_auth_url }}'
+    auth_realm: '{{ keycloak_api_realm }}' # API realm
+    auth_username: '{{ keycloak_user }}'
+    auth_password: '{{ keycloak_password }}'
+    state: present
+    # MART-Client
+    client_id: MART-Client-public
+    implicit_flow_enabled: no
+    standard_flow_enabled: yes
+    protocol: openid-connect
+    public_client: yes # Access Type = confidential
+    root_url: 'https://{{ mart_fqhn }}'
+    service_accounts_enabled: no
+    base_url: /
+    redirect_uris:
+      - 'http://{{ mart_fqhn }}/*'
+      - /*
+    admin_url: ''
+    web_origins:
+      - +
+  register: anet_public_client_result
+
+- debug:
+    var: anet_public_client_result
+    verbosity: 2

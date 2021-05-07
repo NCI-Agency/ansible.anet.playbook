@@ -108,7 +108,7 @@
     # Configure Keycloak clients
     - import_role:
         name: keycloak
-        tasks_from: client-config
+        tasks_from: client-anet-config
 
     # Install PostgreSQL 12
     - import_role:

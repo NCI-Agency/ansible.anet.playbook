@@ -1,0 +1,46 @@
+- name: Ensure Keycloak installation folder "{{mart_installation_folder}}" exists
+  become: yes
+  file:
+    path: '{{mart_application_folder}}'
+    state: directory
+
+- name: Transfer and unpack Keycloak to target machine
+  become: yes
+  copy:
+    src: '{{local_artifact_folder}}/{{mart_installer_file_name}}'
+    dest: '{{mart_application_folder}}/{{mart_installer_file_name}}'
+    owner: root
+    group: root
+
+- name: 'Create {{mart_application_folder}}/bin/ folder'
+  become: yes
+  file:
+    path: '{{mart_application_folder}}/bin/'
+    state: 'directory'
+    owner: root
+    group: root
+
+- name: Create MART startup script
+  become: yes
+  template:
+    src: mart.sh
+    dest: '{{mart_application_folder}}/bin/mart.sh'
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+
+- name: Register MART systemd script
+  become: yes
+  template:
+    src: mart.service.j2
+    dest: '/usr/lib/systemd/system/mart.service'
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+
+- name: Enable MART service
+  become: yes
+  service:
+    name: mart
+    enabled: yes
+    daemon_reload: yes

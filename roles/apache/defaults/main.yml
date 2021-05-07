@@ -13,3 +13,5 @@ httpd_path_ssl_certificate_key: /etc/pki/tls/private/localhost.key
 httpd_path_ssl_csr: '{{ httpd_path_certificates }}/{{ inventory_hostname }}.csr'
 
 remote_rpm_folder: '{{ remote_artifact_folder }}'
+
+http_root_app_port: 8080 # Default is ANET port
