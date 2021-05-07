@@ -1,17 +1,4 @@
-- name: 'Configure Keycloak API access'
-  command:
-    argv:
-      - '{{ keycloak_application_folder }}/bin/kcadm.sh'
-      - config
-      - credentials
-      - --server
-      - 'http://localhost:{{ keycloak_http_port }}/auth'
-      - --realm
-      - '{{ keycloak_api_realm }}'
-      - --user
-      - '{{keycloak_user}}'
-      - --password
-      - '{{keycloak_password}}'
+- include_tasks: config-api-access.yml
 
 - name: 'Create ANET realm: {{ keycloak_anet_realm }}'
   command:

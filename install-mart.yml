@@ -1,0 +1,83 @@
+- name: MART Installation
+  hosts:
+    - mart-redhat-servers
+
+  vars:
+    local_artifact_folder: '/opt/ansible/anet'
+    remote_artifact_folder: '/opt/ansible/anet'
+
+    # JRE8
+    jre_version: 8u231 # ToDo: Latest JRE
+
+    # Keycloak
+    keycloak_version: 11.0.2 # AFPL approved version
+
+    # JRE8
+    source_rpm_folder: '{{local_artifact_folder}}'
+    remote_setup_folder: '{{remote_artifact_folder}}'
+
+    # MAP the MART FQHN to the Apache httpd_server_name
+    httpd_server_name: '{{ mart_fqhn }}'
+
+    keycloak_http_port: 9080 # Explicit port assignment for Keycloak port used both for KeyCloak & reverse proxy
+    http_root_app_port: 8081 # Use MART port in reverse proxy
+
+  tasks:
+
+    # Install local repository
+    - import_role:
+        name: local-repo
+        tasks_from: install
+
+    # Install Java Runtime Environment
+    - import_role:
+        name: jre8
+
+    # Install Keycloak
+    - import_role:
+        name: keycloak
+        tasks_from: install
+
+    # Add Keycloak user (required for API configuration)
+    - import_role:
+        name: keycloak
+        tasks_from: add-keycloak-user.yml
+
+    # Start Keycloak
+    - import_role:
+        name: keycloak
+        tasks_from: start
+
+    # Configure Keycloak clients
+    - import_role:
+        name: keycloak
+        tasks_from: client-mart-config
+
+    # Generate self-signed certificate for Apache
+    - import_role:
+        name: apache
+        tasks_from: generate-self-signed
+
+    # Configure Apache
+    - import_role:
+        name: apache
+        tasks_from: configure
+
+    # Start Apache
+    - import_role:
+        name: apache
+        tasks_from: start
+
+    # Open firewall for Apache HTTP/HTTPS service
+    - import_role:
+        name: apache
+        tasks_from: firewall-open
+
+    # Install MART
+    - import_role:
+        name: mart
+        tasks_from: install
+
+    - name: Please run `cd /opt/mart; bin/mart init mart.ylm`, and follow the instructions.
+      pause:
+

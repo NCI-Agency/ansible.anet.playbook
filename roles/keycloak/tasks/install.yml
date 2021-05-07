@@ -1,7 +1,7 @@
-- name: Ensure Keycloak installation folder "{{keycloak_installation_folder}}" exists
+- name: Ensure Keycloak installation folder "{{keycloak_application_folder}}" exists
   become: yes
   file:
-    path: '{{keycloak_installation_folder}}'
+    path: '{{keycloak_application_folder}}'
     state: directory
 
 - name: Transfer and unpack Keycloak to target machine
