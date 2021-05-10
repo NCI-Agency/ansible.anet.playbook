@@ -12,20 +12,20 @@
 - name: Retrieve service information
   service_facts:
 
-- name: Disable NGINX service
+- name: Disable Apache (httpd) service
   become: yes
   service:
-    name: nginx
+    name: httpd
     enabled: no
-  when: ansible_facts.services['nginx.service'] is defined
+  when: ansible_facts.services['httpd.service'] is defined
 
-- name: Enable Apache systemd service
+- name: Enable Apache (httpd) systemd service
   become: yes
   service:
     name: httpd
     enabled: yes
 
-- name: Set SE-Linux policy to allow NGINX can connect via HTTP to ANET
+- name: Set SE-Linux policy to allow Apache (httpd) can connect via HTTP to ANET
   become: yes
   command:
     argv:
