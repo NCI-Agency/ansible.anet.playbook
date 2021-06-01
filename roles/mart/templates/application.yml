@@ -1,0 +1,68 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+    password: password
+    url: jdbc:h2:file:./data/MARTDB
+    username: sa
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+  mail:
+    from: mart.testmail@gmail.com
+    host: smtp.gmail.com
+    password: 1234asdf.
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          sss:
+            trust: smtp.gmail.com
+          starttls:
+            enable: true
+    protocol: smtp
+    tls: true
+    username: mart.testmail@gmail.com
+
+keycloak:
+  auth-server-url: https://{{mart_fqhn}}/auth/
+  autodetect-bearer-only: true
+  credentials:
+    secret: 2cbf8d49-52f0-4b2b-9572-2f8cf65b682e
+  principal-attribute: preferred_username
+  public-client: false
+  realm: {{ keycloak_mart_realm }}
+  resource: martDemoApp
+  security-constraints:
+    -   authRoles:
+          - ROLE_USER
+        securityCollections:
+          -   patterns:
+                - /ui/*3
+
+mart:
+  mail:
+    to: anet@nato.int
+    from: mart@nato.int
+    schedule: 0/30 * * * * *
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.hibernate: INFO
+    com.mart: INFO
+    com.mart.util: INFO
+  file:
+    name: ./log/mart.log

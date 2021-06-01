@@ -1,10 +1,10 @@
-- name: Ensure Keycloak installation folder "{{mart_installation_folder}}" exists
+- name: Ensure MART installation folder "{{mart_installation_folder}}" exists
   become: yes
   file:
     path: '{{mart_application_folder}}'
     state: directory
 
-- name: Transfer and unpack Keycloak to target machine
+- name: Transfer and unpack MART to target machine
   become: yes
   copy:
     src: '{{local_artifact_folder}}/{{mart_installer_file_name}}'
@@ -37,6 +37,15 @@
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
+
+- name: 'Initialize MART dictionary'
+  become: yes
+  template:
+    src: application.yml
+    dest: '{{mart_application_folder}}/application.yml'
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
 
 - name: Enable MART service
   become: yes
