@@ -22,6 +22,8 @@
     keycloak_http_port: 9080 # Explicit port assignment for Keycloak port used both for KeyCloak & reverse proxy
     http_root_app_port: 8081 # Use MART port in reverse proxy
 
+    keycloak_mart_realm: MART
+
   tasks:
 
     # Install local repository
@@ -80,4 +82,3 @@
 
     - name: Please run `cd /opt/mart; bin/mart init mart.ylm`, and follow the instructions.
       pause:
-
