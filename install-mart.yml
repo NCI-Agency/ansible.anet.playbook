@@ -55,6 +55,11 @@
         name: keycloak
         tasks_from: client-mart-config
 
+    # Install Apache
+    - import_role:
+        name: apache
+        tasks_from: install
+
     # Generate self-signed certificate for Apache
     - import_role:
         name: apache
