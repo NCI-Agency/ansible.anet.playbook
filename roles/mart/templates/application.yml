@@ -43,7 +43,7 @@ keycloak:
   principal-attribute: preferred_username
   public-client: false
   realm: {{ keycloak_mart_realm }}
-  resource: martDemoApp
+  resource: MART-Client-public
   security-constraints:
     -   authRoles:
           - ROLE_USER

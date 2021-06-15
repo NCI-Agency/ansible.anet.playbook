@@ -19,7 +19,7 @@
     # MAP the MART FQHN to the Apache httpd_server_name
     httpd_server_name: '{{ mart_fqhn }}'
 
-    keycloak_http_port: 9080 # Explicit port assignment for Keycloak port used both for KeyCloak & reverse proxy
+    keycloak_http_port: 8080 # Explicit port assignment for Keycloak port used both for KeyCloak & reverse proxy
     http_root_app_port: 8081 # Use MART port in reverse proxy
 
     keycloak_mart_realm: MART

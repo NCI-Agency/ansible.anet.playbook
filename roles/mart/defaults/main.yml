@@ -2,6 +2,6 @@ mart_installation_folder: /opt
 mart_application_folder: '{{mart_installation_folder}}/mart'
 
 mart_version: 0.0.1-SNAPSHOT
-mart_installer_file_name: 'mart-demo-{{mart_version}}.jar'
+mart_installer_file_name: 'MART-{{mart_version}}.jar'
 
 mart_http_port: 8080
